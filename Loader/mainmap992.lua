@@ -1,5 +1,4 @@
--- WataX Hub (Inline CP Version)
--- By ChatGPT x GosHe
+-- WataX Script 
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
@@ -9,7 +8,7 @@ local delayTime = 0.04
 local isRunning = false
 local routes = {}
 
--- parser string → table Vector3
+
 local function parseRoute(str)
     local t = {}
     for x,y,z in str:gmatch("{X=([%-%d%.]+),Y=([%-%d%.]+),Z=([%-%d%.]+)}") do
@@ -19,7 +18,6 @@ local function parseRoute(str)
 end
 
 -- ==============================
--- isi koordinat di sini
 local CP0to1_str = [[
 {X=764.61,Y=253.00,Z=682.75},
 {X=764.61,Y=253.00,Z=682.75},
@@ -49609,7 +49607,7 @@ routes = {
     {"CP31->CP32", parseRoute(CP31to32_str)},
 }
 
--- cari route terdekat
+
 local function getNearestRoute()
     local nearestIdx, dist = 1, math.huge
     if hrp then
@@ -49627,7 +49625,7 @@ local function getNearestRoute()
     return nearestIdx
 end
 
--- jalankan route sekali (ke CP berikutnya)
+
 local function runRouteOnce()
     if #routes == 0 then return end
     isRunning = true
@@ -49656,7 +49654,7 @@ local function runRouteOnce()
     end)
 end
 
--- jalankan semua route sampai akhir
+
 local function runAllRoutes()
     if #routes == 0 then return end
     isRunning = true
@@ -49686,14 +49684,14 @@ local function runAllRoutes()
     end
 end
 
--- stop
+
 local function stopRoute()
     isRunning = false
     print("Stop ditekan")
 end
 
 -- =========================
--- GUI
+
 local screenGui = Instance.new("ScreenGui",player:WaitForChild("PlayerGui"))
 screenGui.ResetOnSpawn = false
 
@@ -49706,13 +49704,13 @@ frame.Draggable = true
 
 local title = Instance.new("TextLabel",frame)
 title.Size = UDim2.new(1,0,0,30)
-title.Text = "WataX Hub"
+title.Text = "⚡ WataX Menu"
 title.BackgroundColor3 = Color3.fromRGB(60,60,60)
 title.TextColor3 = Color3.fromRGB(255,255,255)
 title.Font = Enum.Font.SourceSansBold
 title.TextScaled = true
 
--- tombol close
+
 local closeBtn = Instance.new("TextButton",frame)
 closeBtn.Size = UDim2.new(0,30,0,30)
 closeBtn.Position = UDim2.new(0,0,0,0)
@@ -49723,7 +49721,7 @@ closeBtn.MouseButton1Click:Connect(function()
     screenGui:Destroy()
 end)
 
--- tombol minimize
+
 local miniBtn = Instance.new("TextButton",frame)
 miniBtn.Size = UDim2.new(0,30,0,30)
 miniBtn.Position = UDim2.new(1,-30,0,0)
@@ -49731,11 +49729,11 @@ miniBtn.Text = "_"
 miniBtn.BackgroundColor3 = Color3.fromRGB(80,80,200)
 miniBtn.TextColor3 = Color3.fromRGB(255,255,255)
 
--- bubble
+
 local bubbleBtn = Instance.new("TextButton",screenGui)
 bubbleBtn.Size = UDim2.new(0,60,0,40)
 bubbleBtn.Position = UDim2.new(0,20,0.7,0)
-bubbleBtn.Text = "WataX"
+bubbleBtn.Text = "⚡ WataX"
 bubbleBtn.BackgroundColor3 = Color3.fromRGB(0,120,200)
 bubbleBtn.TextColor3 = Color3.fromRGB(255,255,255)
 bubbleBtn.Font = Enum.Font.SourceSansBold
@@ -49754,7 +49752,7 @@ bubbleBtn.MouseButton1Click:Connect(function()
     bubbleBtn.Visible = false
 end)
 
--- tombol Start CP
+
 local startCP = Instance.new("TextButton",frame)
 startCP.Size = UDim2.new(0.5,-5,0,40)
 startCP.Position = UDim2.new(0,5,0,40)
@@ -49763,7 +49761,7 @@ startCP.BackgroundColor3 = Color3.fromRGB(50,200,50)
 startCP.TextColor3 = Color3.fromRGB(255,255,255)
 startCP.MouseButton1Click:Connect(runRouteOnce)
 
--- tombol Stop
+
 local stopBtn = Instance.new("TextButton",frame)
 stopBtn.Size = UDim2.new(0.5,-5,0,40)
 stopBtn.Position = UDim2.new(0.5,0,0,40)
@@ -49772,11 +49770,11 @@ stopBtn.BackgroundColor3 = Color3.fromRGB(200,50,50)
 stopBtn.TextColor3 = Color3.fromRGB(255,255,255)
 stopBtn.MouseButton1Click:Connect(stopRoute)
 
--- tombol Start All
+
 local startAll = Instance.new("TextButton",frame)
 startAll.Size = UDim2.new(1,-10,0,40)
 startAll.Position = UDim2.new(0,5,0,90)
-startAll.Text = "Start To End"
+startAll.Text = "Start Puncak"
 startAll.BackgroundColor3 = Color3.fromRGB(50,100,200)
 startAll.TextColor3 = Color3.fromRGB(255,255,255)
 startAll.MouseButton1Click:Connect(runAllRoutes)
